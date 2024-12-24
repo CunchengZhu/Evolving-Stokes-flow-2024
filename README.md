@@ -9,7 +9,7 @@ This repository provides a minimal MATLAB implementation of a fluid membrane und
 This implementation relies on the following key components:
 * `Mesh.m`: Constructs the halfedge data structure for a triangular manifold mesh.
 * `Geometry.m`: Computes geometric attributes of the $\mathbb{R}^3$-embedded mesh and the spatial differential operators for an evolving surface.
- `main.m`: The main executable that performs the variational time integration.
+* `main.m`: The main executable that performs the variational time integration.
 
 ## Prerequisites
 To run this code, you will need:
@@ -40,8 +40,8 @@ If you use this code in your academic projects or wish to learn more about the u
 }
 ```
 
-### Discretization of Helfrich Energy
-The discretization of the Helfrich energy implemented in MATLAB is based on the following paper: 
+### Helfrich Energy
+The discretization of the Helfrich energy is based on the following paper: 
 
 ```bibtex
 @article{Zhu_Mem3DG_Modeling_Membrane_2022,
