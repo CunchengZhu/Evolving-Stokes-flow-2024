@@ -10,15 +10,10 @@ classdef Geometry
         f_basis_u {mustBeNumeric};
         f_basis_v {mustBeNumeric};
         f_center {mustBeNumeric};
-        v_normal {mustBeNumeric};
-        v_basis_u {mustBeNumeric};
-        v_basis_v {mustBeNumeric};
         v_area {mustBeNumeric};
         he_length {mustBeNumeric};
         he_dihedral {mustBeNumeric};
         he_corner {mustBeNumeric};
-        he_face_polar {mustBeNumeric};
-        he_vertex_polar {mustBeNumeric};
         he_cotan_weight {mustBeNumeric};
         he_bary_weight {mustBeNumeric};
         he_mean_curvature {mustBeNumeric};
@@ -48,7 +43,6 @@ classdef Geometry
             obj.f_center = obj.center();
             [obj.f_area, obj.f_normal, obj.f_basis_u, obj.f_basis_v] = obj.face();
             obj.area = sum(obj.f_area);
-            [obj.v_normal, obj.v_basis_u, obj.v_basis_v] = obj.vextex_basis();
 
             [v_area_sum, ~] = obj.mesh.face_to_vertex(obj.f_area);
             obj.v_area = v_area_sum ./ 3;
@@ -85,16 +79,7 @@ classdef Geometry
             area = 0.5 * sqrt(sum(cross_product.^2, 2));
             normal = 0.5 * cross_product ./ area; % ccw oriented
             f_basis_u = one ./ vecnorm(one, 2, 2);
-            f_basis_v = - cross(normal, f_basis_u, 2); % this sign seems to work but ...
-        end
-
-        function [v_normal, v_basis_u, v_basis_v] = vextex_basis(obj)
-            [v_normal, ~] = obj.mesh.face_to_vertex(obj.f_normal .* obj.f_area);
-            v_normal = v_normal ./ vecnorm(v_normal, 2, 2);
-            one = obj.V(obj.mesh.he_dst(obj.mesh.v_he(:, 1)), :) - obj.V;
-            one = one - v_normal .* dot(one, v_normal, 2);
-            v_basis_u = one ./ vecnorm(one, 2, 2);
-            v_basis_v = cross(v_normal, v_basis_u, 2);
+            f_basis_v = - cross(normal, f_basis_u, 2);
         end
         
         function [he_length, he_dihedral, f_f_dihedral] = dihedral(obj)
@@ -123,8 +108,6 @@ classdef Geometry
         function [he_weight, he_bary_weight] = weight(obj)
             he_weight = 0.5 * cot(obj.he_corner(obj.mesh.he_prev));
             l1 = obj.he_length;
-            % l2 = obj.he_length(obj.mesh.he_next);
-            % l3 = obj.he_length(obj.mesh.he_prev);
             a = obj.f_area(obj.mesh.he_face);
             % he_weight = (l2.^2 + l3.^2 - l1.^2)./(8.* area); % cotan
             he_bary_weight = 2./3.* a./(l1.^2);

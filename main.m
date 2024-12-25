@@ -5,7 +5,7 @@ dir = "./data/";
 
 %% system init
 %%% 0 for new simulation, otherwise continue from geo"start".mat
-start = 2; 
+start = 0; 
 if start == 0
     %%% geometry
     load("./spheroid.mat")
@@ -43,7 +43,7 @@ for t = (start + 1):p.T
         %%% preconditioner
         H = blkdiag(geo.lap, geo.lap, geo.lap);
         %%% gradient descent/ascent
-        P(:) = P(:) + o.h * (H \ b);
+        P(:) = P(:) + o.h * ((H +  1e-8 * sparse(eye(3*geo.mesh.n_v))) \ b);
         pressure = pressure - o.eta * o.h * expan ./ geo.f_area;
         %%% update geometry
         geo = Geometry(M, P);
@@ -53,7 +53,7 @@ for t = (start + 1):p.T
     [P, velocity] = rm_rigid(P, (P(:) - P0) / p.dt, geo.v_area);
     save(dir + sprintf("geo%d.mat", t), "M", "P", "velocity", "pressure", "fb", "p", "o", "r");
     fprintf("Save geo%d.mat at j =%d, eps_f = %0.4g, eps_d = %0.4g \n", t, j, eps_f, eps_d);
-    %%% update geometry, remesh if needed
+    %%% update geometry
     geo = Geometry(M, P);
 end
 

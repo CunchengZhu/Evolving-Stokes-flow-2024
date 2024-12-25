@@ -36,24 +36,3 @@ function [vertex, velocity] = rm_rigid(vertex, velocity, v_area)
     velocity = velocity - cross(w, vertex, 2);
     velocity = velocity(:);
 end
-
-% close all; clear all;
-% [P,M,UV,TF,N,NF] = readOBJ("./torus.obj");
-% geo = Geometry(M, P);
-% com = sum(geo.V .* geo.v_area) / sum(geo.v_area);
-
-% % settings
-% u_L = repmat([1, 2, 3], geo.mesh.n_v, 1);
-% w = repmat([1,2,1], geo.mesh.n_v, 1);
-% c_R = repmat([20, 1, 7], geo.mesh.n_v, 1);
-% %c_R = repmat(com, geo.mesh.n_v, 1);
-% u_R = cross(w, geo.V - c_R, 2);
-% u_D = 1 * randn(size(u_L));
-% velocity = u_D + u_L + u_R;
-
-% IO.show(M, P, vecnorm(velocity, 2, 2));
-% hold on; qvr(P, velocity);
-
-
-% [P, velocity] = remove_rigid(P, velocity, geo.v_area);
-% [P, velocity] = remove_rigid(P, velocity, geo.v_area);
