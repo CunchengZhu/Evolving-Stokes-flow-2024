@@ -32,11 +32,14 @@ If you use this code in your academic projects or wish to learn more about the u
 
 ### Main Paper
 ```bibtex
-@article{zhu2024stokesflowevolvingfluid,
+@article{Zhu_Saintillan_Chern_2025,
     title={Stokes flow of an evolving fluid film with arbitrary shape and topology},
+    volume={1003},
+    DOI={10.1017/jfm.2024.1208},
+    journal={Journal of Fluid Mechanics},
     author={Zhu, Cuncheng and Saintillan, David and Chern, Albert},
-    journal={arXiv preprint arXiv:2407.14025},
-    year={2024}
+    year={2025},
+    pages={R1}
 }
 ```
 
