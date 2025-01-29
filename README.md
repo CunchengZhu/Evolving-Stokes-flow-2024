@@ -9,7 +9,7 @@ This repository provides a minimal MATLAB implementation of a fluid membrane und
 This implementation relies on the following key components:
 * `Mesh.m`: Constructs the halfedge data structure for a triangular manifold mesh.
 * `Geometry.m`: Computes geometric attributes of the $\mathbb{R}^3$-embedded mesh and the spatial differential operators for an evolving surface.
-* `main.m`: The main executable that performs the variational time integration.
+* `spheroid.m`, `genus6.m`: The main executable that performs the variational time integration.
 
 ## Prerequisites
 To run this code, you will need:
@@ -23,7 +23,8 @@ Note that this remesher is based on OpenMesh 5.0, a legacy version of OpenMesh.
 ```Bash
 git clone https://github.com/CunchengZhu/Evolving-Stokes-flow-2024.git
 ```
-2.	Open `main.m` in MATLAB and execute it to start the simulation.
+2. Load a driver script (e.g., `spheroid.m`, `genus6.m`)
+3. Execute the script to start the simulation.
 
 ## Visualization
 * **MATLAB Visualization**: Use the built-in `trisurf` function to visualize the triangular mesh and the `quiver` function to display the fluid velocity. 
