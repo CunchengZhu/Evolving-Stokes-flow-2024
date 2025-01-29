@@ -1,6 +1,6 @@
 verbose = false;
 %%% directory
-dir = "./data/"; 
+dir = "./data/spheroid/"; 
 [status, msg, msgID] = mkdir(dir); 
 
 %% system init
@@ -8,7 +8,7 @@ dir = "./data/";
 start = 0; 
 if start == 0
     %%% geometry
-    load("./spheroid.mat")
+    load("./assets/spheroid.mat")
     geo = Geometry(M, P);
     %%% parameters
     p.dt = 5e-2; % time 

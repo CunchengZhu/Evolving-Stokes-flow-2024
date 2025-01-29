@@ -15,6 +15,8 @@ This implementation relies on the following key components:
 To run this code, you will need:
 * MATLAB
 * The [`sptensor`](https://www.tensortoolbox.org/sptensor_doc.html) library for efficient storage and manipulation of sparse multidimensional arrays.
+* [`MATLAB Isotropic Remesher`](https://github.com/christopherhelf/isotropicremeshing?tab=readme-ov-file#matlab-isotropic-remesher) (optional) for remeshing when detecting non-Delaunay meshes. 
+Note that this remesher is based on OpenMesh 5.0, a legacy version of OpenMesh.
 
 ## Running the Code
 1. Clone this repository:

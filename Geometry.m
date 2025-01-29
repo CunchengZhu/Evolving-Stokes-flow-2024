@@ -271,5 +271,17 @@ classdef Geometry
             DTD = div' * mass2_inv * div;
         end
 
+        function [isDelauany_mesh, isDelaunay] = is_delaunay(obj, tol)
+            % Determine if the mesh is Delaunay 
+            % Inputs:
+            %   tol: tolerance: 0-1, ratio of non-Delaunay edges
+            % Outputs:
+            %   isDelauany_mesh: bool, if the mesh is Delaunay
+            %   isDelaunay: bool array, if each halfedge is Delaunay
+            total_angle = obj.he_corner(obj.mesh.he_prev) + obj.he_corner(obj.mesh.he_prev(obj.mesh.he_flip));
+            isDelaunay = total_angle < pi;
+            isDelauany_mesh = (sum(~isDelaunay) / obj.mesh.n_he) < (tol + 1e-5);
+        end
+
     end
 end
