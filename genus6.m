@@ -65,7 +65,7 @@ for t = (start + 1):p.T
     if ~geo.is_delaunay(0) && hasRemesher
         geo_pre = geo; 
         fprintf("Remeshing. t = %d \n", t);
-        [M, P] = remeshing(int32(M), P, int32([]), r.edge_length, int32(r.n_iter));
+        [M, P] = remeshing(int32(M), P, int32([]), r.edge_length, int32(r.n_iter)); M = cast(M, "double");
         geo = Geometry(M, P);
         [velocity, pressure] = map_data(geo, geo_pre, velocity, pressure);
     end
